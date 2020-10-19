@@ -13,8 +13,12 @@
 #include "display.h"
 
 int main(int argc, char **argv) {
-	// types linéaires : vector, array, list (forward), set (unordered), stack, deque, queue
-	// autres conteneurs : map (unordered)
+	// types linéaires : (coût d'accès/insert à 1 pos)
+//			vector, array : O(1)
+//			list (forward) : O(n)
+//			set (unordered), O(log(n))
+//			stack, deque, queue
+	// autres conteneurs : map (unordered) : O(log(n))
 	// 1. init statique avec {}
 	// list: doubly linked list, efficient for insert/remove, not for random access
 	std::list<std::pair<double, double>> data_list = {{1.0, 10.0}, {2.0, 20.0}, {3.0, 30.0}};
@@ -39,9 +43,15 @@ int main(int argc, char **argv) {
 	}
 	std::cout << std::endl;
 
-	// test:
+	// test sur conteneur simple:
 	std::set<double> pressions = {1024.3, 1030.0};
 	displayData(begin(pressions), end(pressions));
+
+	// 3. array de taille fixe : calcul numerique avec random access
+	std::array<double,10> temperatures;
+	temperatures.fill(25);
+	displayData(begin(temperatures), end(temperatures));
+
 }
 
 
