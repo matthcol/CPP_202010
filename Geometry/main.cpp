@@ -15,12 +15,12 @@ int main(int argc, char **argv) {
 	Form *pf = new Form("B"); // alloue (new) puis initialise (appel constructeur)
 	Form default_f;
 	Point ptC("C",3.4, 4.5);
+	Point default_pt();
+	Point copy_pt(ptC);
 	cout << "#" << f.getName() << "#"
 			<< pf->getName() << "#"
-			<< default_f.getName() << "#"
-			<< ptC.getName() << "/" << ptC.getX()
-			<< endl;
-
+			<< default_f.getName() << "#" << endl;
+	cout << ptC << " # " << copy_pt << endl;
 	delete pf; // appel destructeur Form pf
 	return 0;
 } // appel le destructeur Form de f
