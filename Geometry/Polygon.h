@@ -28,6 +28,9 @@ public:
 	Polygon(Polygon &&other) = default;		// TODO: move de sommets et reset sommets/size other
 
 	virtual void translate(double deltaX, double deltaY);
+	size_t getSize() const;
+	const Point &at(size_t pos) const;
+
 
 private:
 	size_t size;

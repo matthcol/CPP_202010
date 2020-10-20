@@ -84,11 +84,11 @@ void testPolygon() {
 	// 2. copy poly
 	Polygon poly2(poly); // copy
 	cout << poly << endl; // check: poly unchanged
-	cout << poly2 << endl;
+	//cout << poly2 << endl;
 	// 3. move poly
 	Polygon poly3(std::move(poly)); // move
 	cout << poly << endl;  // check: empty poly
-	cout << poly3 << endl;
+	//cout << poly3 << endl;
 }
 
 int main(int argc, char **argv) {
