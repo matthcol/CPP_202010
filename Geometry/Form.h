@@ -15,7 +15,7 @@ public:
 	Form() = default;
 	Form(const std::string &name);
 //	Form(const Form &other) = default;
-//	Form(Form &&other);
+//	Form(Form &&other) =default;
 	const std::string& getName() const;
 	void setName(const std::string &name);
 	virtual void translate(double deltaX, double deltaY)=0;

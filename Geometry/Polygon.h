@@ -24,8 +24,8 @@ public:
 		}
 	}
 
-	Polygon(const Polygon &other) = default; // TODO: deep copy de sommets
-	Polygon(Polygon &&other) = default;		// TODO: move de sommets et reset sommets/size other
+	Polygon(const Polygon &other); // = default; // TODO: deep copy de sommets
+	Polygon(Polygon &&other); // = default;		// TODO: move de sommets et reset sommets/size other
 
 	virtual void translate(double deltaX, double deltaY);
 	size_t getSize() const;

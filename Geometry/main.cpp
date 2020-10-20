@@ -80,7 +80,7 @@ void testPolygon() {
 	source.push_back(Point("B", 0, 4));
 	Polygon poly("P", begin(source), end(source));
 	// 1. print poly
-	cout << "Init:" << poly << endl;
+	cout << "Init: " << poly << endl;
 	// 2. copy poly
 	Polygon poly2(poly); // copy
 	poly.translate(1.0, 1.0);
@@ -90,7 +90,7 @@ void testPolygon() {
 	Polygon poly3(std::move(poly)); // move
 	poly.translate(1.0, 1.0);
 	cout << "After move:" << poly << endl;  // check: empty poly
-	cout << "After copy:" << poly3 << endl;
+	cout << "After move:" << poly3 << endl;
 }
 
 int main(int argc, char **argv) {
