@@ -46,4 +46,7 @@ std::ostream &operator<<(std::ostream &out, const Point &pt) {
 	return out << pt.getName() << '(' << pt.getX() << ',' << pt.getY() << ')';
 }
 
-
+//Point::Point(Point &&other):Form(other), x(other.x), y(other.y) {
+//	other.x = 0.0;
+//	other.y = 0.0;
+//}

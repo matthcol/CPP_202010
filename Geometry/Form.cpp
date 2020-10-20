@@ -20,6 +20,9 @@ const std::string& Form::getName() const {
 	return name;
 }
 
+//Form::Form(Form &&other):name(std::move(name)) {
+//}
+
 void Form::setName(const std::string &name) {
 	this->name = name;
 }
