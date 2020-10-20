@@ -24,5 +24,5 @@ void Form::setName(const std::string &name) {
 	this->name = name;
 }
 
-
-
+//void Form::translate(double deltaX, double deltaY) {
+//}

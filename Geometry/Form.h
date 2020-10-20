@@ -16,6 +16,7 @@ public:
 	Form(const std::string &name);
 	const std::string& getName() const;
 	void setName(const std::string &name);
+	virtual void translate(double deltaX, double deltaY)=0;
 
 //	virtual ~Form();
 private:

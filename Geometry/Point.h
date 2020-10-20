@@ -11,14 +11,18 @@
 #include <iostream>
 #include "Form.h"
 
+// class Point final: public Form {
 class Point: public Form {
 public:
 	Point(); // = default;
 	Point(const std::string &name, double x, double y);
+	Point(const Point &other) = delete;
 	double getX() const;
 	void setX(double x);
 	double getY() const;
 	void setY(double y);
+	virtual void translate(double deltaX, double deltaY) override final;
+	virtual double distance(const Point &other) const final;
 
 private:
 	double x;

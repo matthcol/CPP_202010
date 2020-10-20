@@ -7,6 +7,8 @@
 
 #include "Point.h"
 
+#include <cmath>
+
 //Point::Point(): Form(), x(0.0), y(0.0){}
 Point::Point(): Point("",0.0, 0.0){}
 
@@ -31,7 +33,17 @@ void Point::setY(double y) {
 	this->y = y;
 }
 
+void Point::translate(double deltaX, double deltaY) {
+	this->x += deltaX;
+	this->y += deltaY;
+}
+
+double Point::distance(const Point &other) const {
+	return std::hypot(this->x - other.x, this->y - other.y);
+}
+
 std::ostream &operator<<(std::ostream &out, const Point &pt) {
 	return out << pt.getName() << '(' << pt.getX() << ',' << pt.getY() << ')';
 }
+
 
