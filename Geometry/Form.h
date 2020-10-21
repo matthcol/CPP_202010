@@ -14,15 +14,20 @@ class Form {
 public:
 	Form() = default;
 	Form(const std::string &name);
-//	Form(const Form &other) = default;
-//	Form(Form &&other) =default;
+	// keep copy/movie constructor/assignment by default
+	Form(const Form &form) = default;
+	Form(Form &&form) = default;
+	Form &operator=(const Form& form) = default;
+	Form &operator=(Form&& form) = default;  // NB: fait bien le move sur le name
+
 	const std::string& getName() const;
 	void setName(const std::string &name);
+
 	virtual void translate(double deltaX, double deltaY)=0;
 
-//	virtual ~Form();
+	virtual ~Form();
 private:
-	std::string name; // appel le constructeur défaut de string
+	std::string name; // call default constructor of class string
 };
 
 #endif /* FORM_H_ */

@@ -8,7 +8,7 @@
 #include "WeightedPoint.h"
 
 WeightedPoint::WeightedPoint() {
-	// TODO Auto-generated constructor stub
-
 }
 
+WeightedPoint::~WeightedPoint() {
+}

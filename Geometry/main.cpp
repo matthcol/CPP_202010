@@ -12,6 +12,9 @@
 #include <vector>
 #include <optional>
 #include <functional>
+#include <memory>
+#include <type_traits>
+#include <typeinfo>
 
 using namespace std;
 
@@ -73,7 +76,22 @@ void testPointsForms() {
 	point_move2 = Point("I",1.0,2.0); // operator d'affectation par move sur rvalue
 }
 
-void testPolygon() {
+void testCopyMovePoint() {
+	Point p("A", 1.0, 2.0);
+	// copy
+	Point p2(p);
+	p.translate(1.0, 1.0);
+	cout << "After copy/translate original: "
+			<< p << " / copy:" << p2 << endl;
+	// move
+	Point p3(std::move(p)); // call default Point move constructor (empty name, no reset on x/y)
+	p3.translate(1.0, 1.0);
+	cout << "After copy/translate original: "
+			<< p << " / copy:" << p3 << endl;
+
+}
+
+void testCopyMovePolygon() {
 	vector<Point> source;
 	source.push_back(Point());
 	source.push_back(Point("A", 3, 0));
@@ -84,17 +102,43 @@ void testPolygon() {
 	// 2. copy poly
 	Polygon poly2(poly); // copy
 	poly.translate(1.0, 1.0);
-	cout << "After copy:" << poly << endl; // check: poly unchanged
-	cout << "After copy:" << poly2 << endl;
+	cout << "After copy/translate original: " << poly << endl; // check: poly unchanged
+	cout << "After copy/translate copy: " << poly2 << endl;
 	// 3. move poly
 	Polygon poly3(std::move(poly)); // move
-	poly.translate(1.0, 1.0);
-	cout << "After move:" << poly << endl;  // check: empty poly
-	cout << "After move:" << poly3 << endl;
+	poly3.translate(1.0, 1.0);
+	cout << "After move/translate original: " << poly << endl;  // check: empty poly
+	cout << "After move/translate moved: " << poly3 << endl;
+}
+
+void testInitializerList() {
+	Point pA("A",1.0,2.0);
+	Polygon poly{pA, Point("B",1.0,2.0), Point("C",1.0,2.0), Point("D",1.0,2.0)};
+	// NB: lvalue is copied, rvalues are moved
+	cout << "Polygon initialized with 1 lvalue and 3 rvalues: " << poly << endl;
+	pA.translate(1.0, 1.0);
+	cout << "Polygon after translate lvalue: " << poly << ", original 1st summit: " << pA << endl;
+}
+
+template<class T>
+void testRequirements() {
+	string name(typeid(T).name());
+	cout << boolalpha
+			<< "is_default_constructible<" << name << ">: "
+			<< is_default_constructible<T>::value << endl
+			<< "is_trivially_default_constructible<" << name << ">: "
+			<< is_trivially_default_constructible<T>::value << endl
+			<< "is_nothrow_default_constructible<" << name << ">: "
+			<< is_nothrow_default_constructible<T>::value << endl;
 }
 
 int main(int argc, char **argv) {
-	testPolygon();
+	testCopyMovePoint();
+	testCopyMovePolygon();
+	testInitializerList();
+	testRequirements<Form>();
+	testRequirements<Point>();
+	testRequirements<Polygon>();
 	return 0;
 }
 

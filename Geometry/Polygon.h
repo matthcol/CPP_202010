@@ -16,25 +16,30 @@
 class Polygon: public Form {
 public:
 	template<class PointIterator>
-	Polygon(const std::string &name, PointIterator first, PointIterator last):Form(name) {
-		size = std::distance(first, last);
-		sommets = new Point[size];
-		for (auto it = sommets; first != last; ++first, ++it) {
+	Polygon(const std::string &name, PointIterator first, PointIterator last):
+		Form(name),
+		size(std::distance(first, last))
+	{
+		summits = new Point[size];
+		for (auto it = summits ; first != last; ++first, ++it) {
 			*it = *first;
 		}
 	}
 
-	Polygon(const Polygon &other); // = default; // TODO: deep copy de sommets
-	Polygon(Polygon &&other); // = default;		// TODO: move de sommets et reset sommets/size other
+	Polygon();
+	Polygon(std::initializer_list<Point> init_list);
+	virtual ~Polygon();
+
+	Polygon(const Polygon &other); // = default; // deep copy of sommets
+	Polygon(Polygon &&other); // = default;		// move of sommets et reset sommets/size other
 
 	virtual void translate(double deltaX, double deltaY);
 	size_t getSize() const;
 	const Point &at(size_t pos) const;
 
-
 private:
 	size_t size;
-	Point *sommets;
+	Point *summits;
 };
 
 std::ostream &operator<<(std::ostream &out, const Polygon& polygon);

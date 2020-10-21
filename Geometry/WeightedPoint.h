@@ -10,11 +10,15 @@
 
 #include "Point.h"
 
-class WeightedPoint: public Point {
+class WeightedPoint: public Point { // Error if parent class is final
 public:
 	WeightedPoint();
+	virtual ~WeightedPoint();
 
+	// error if method is final in parent class:
 	// virtual void translate(double deltaX, double deltaY) override {};
+
+	// TODO: manage weight attribute
 };
 
 #endif /* WEIGHTEDPOINT_H_ */

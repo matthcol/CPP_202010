@@ -17,6 +17,13 @@ Point::Point(const std::string &name, double x, double y): Form(name), x(x), y(y
 {
 }
 
+//Point::Point(Point &&other):Form(std:move(other)), x(other.x), y(other.y) {
+//	other.x = 0.0;
+//	other.y = 0.0;
+//}
+
+Point::~Point(){}
+
 double Point::getX() const {
 	return x;
 }
@@ -46,7 +53,4 @@ std::ostream &operator<<(std::ostream &out, const Point &pt) {
 	return out << pt.getName() << '(' << pt.getX() << ',' << pt.getY() << ')';
 }
 
-//Point::Point(Point &&other):Form(other), x(other.x), y(other.y) {
-//	other.x = 0.0;
-//	other.y = 0.0;
-//}
+
