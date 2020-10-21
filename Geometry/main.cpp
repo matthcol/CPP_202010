@@ -120,25 +120,10 @@ void testInitializerList() {
 	cout << "Polygon after translate lvalue: " << poly << ", original 1st summit: " << pA << endl;
 }
 
-template<class T>
-void testRequirements() {
-	string name(typeid(T).name());
-	cout << boolalpha
-			<< "is_default_constructible<" << name << ">: "
-			<< is_default_constructible<T>::value << endl
-			<< "is_trivially_default_constructible<" << name << ">: "
-			<< is_trivially_default_constructible<T>::value << endl
-			<< "is_nothrow_default_constructible<" << name << ">: "
-			<< is_nothrow_default_constructible<T>::value << endl;
-}
-
 int main(int argc, char **argv) {
 	testCopyMovePoint();
 	testCopyMovePolygon();
-	testInitializerList();
-	testRequirements<Form>();
-	testRequirements<Point>();
-	testRequirements<Polygon>();
+
 	return 0;
 }
 
